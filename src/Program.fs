@@ -16,7 +16,6 @@ let main argv =
     match args with
     | [] | _::[] -> fail ()
     | d::o::args ->
-        let dir = if d = "--" then Environment.CurrentDirectory else d
         match o with
         | "list" ->
             if hasOption 'p' && args.Length = 0
@@ -25,10 +24,10 @@ let main argv =
                  let path = if hasOption 'p' then args.[0] else d
                  Core.show d path full
         | "contains" -> match args with
-                        | file::[] -> Core.contains dir file
+                        | file::[] -> Core.contains d file
                         | _ -> fail ()
         | "add"      -> match args with 
-                        | action::file::[] -> Core.add dir action file
+                        | action::file::[] -> Core.add d action file
                         | _ -> fail ()
         | _          -> fail ()
     0
