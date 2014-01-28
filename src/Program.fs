@@ -20,14 +20,18 @@ let main argv =
         | "list" ->
             if hasOption 'p' && args.Length = 0
             then printfn "I'm sorry, did you mean to add another argument?"
-            else let full = hasOption 'f'
+            else let recursive = hasOption 'r'
                  let path = if hasOption 'p' then args.[0] else d
-                 Core.show d path full
-        | "contains" -> match args with
-                        | file::[] -> Core.contains d file
-                        | _ -> fail ()
-        | "add"      -> match args with 
-                        | action::file::[] -> Core.add d action file
-                        | _ -> fail ()
-        | _          -> fail ()
+                 Core.show d path recursive
+        | "find" ->
+            let children = hasOption 'c'
+            let recursive = hasOption 'r'
+            match args with
+            | file::[] -> Core.find d file children recursive
+            | _ -> fail ()
+        | "add" ->
+            match args with 
+            | action::file::[] -> Core.add d action file
+            | _ -> fail ()
+        | _ -> fail ()
     0

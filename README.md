@@ -11,10 +11,12 @@ Usage
 Operations:
 
  * `list` - prints a list of the files in the top level directory. Options:
-  * `-f` full listing.
+  * `-r` recursive (show full tree).
   * `-p <path>` start at this path.
 
- * `contains <file>` - whether or not a file is included in the project.
+ * `find <path>` - finds a file or folder in the project. Options
+  * `-r` (recursive) show full tree of all descendants.
+  * `-c` (children) show a flat list of the immediate children only.
 
  * `add <action> <file>` - adds a file to the project.
 

@@ -9,13 +9,15 @@ open System.Xml.Linq
 open Clio.ProjectItems
 
 let show p path full = Project.find p >>= Project.load >>| (fun prj ->
-    if full then prj.Print path else prj.PrintShallow path)
+    if full then prj.PrintRecursive path false else prj.PrintShallow path false)
 
-let contains p (file:string) =
+let find p (file:string) children recursive =
     Project.find p >>= Project.load >>| (fun prj ->
-        if prj.Contains file 
-        then printfn "Yes, this file is indeed included in the project."
-        else printfn "No, I'm afraid this file is not part of the project.")
+        if not <| prj.Contains file then
+            printfn "This file does not exist in the project."
+        elif recursive then prj.PrintRecursive file true
+        elif children then prj.PrintShallow file true
+        else prj.Print file)
 
 let add p (action:string) (file:string) =
     let processChanges (prj:Project.Project) =

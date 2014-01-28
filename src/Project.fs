@@ -44,17 +44,25 @@ type Project (path:string, root:XElement) =
         |> (fun y -> y.Node)
         |> x.FileItemGroup().Add
 
-    member x.PrintShallow path =
+    member x.PrintShallow path parent =
         let node = x.FindOrDefault path trie
-        let f k n = x.Printf false 1 k n
+        let f k n = x.Printf false 0 k n
+        if parent then f path node else ()
         match node with | Trie.Node(_, m) -> Map.iter f m
 
-    member x.Print path =
+    member x.PrintRecursive path parent =
         let node = x.FindOrDefault path trie
         let rec traverse i k n =
             x.Printf true i k n
             match n with | Trie.Node(_, m) -> Map.iter (traverse (i + 1)) m
-        traverse 0 "" node
+        let key = if parent then path else ""
+        traverse 0 key node
+
+    member x.Print path =
+        let node = x.Find path
+        match node with
+        | None -> failwith "Could not find file"
+        | Some n -> x.Printf true 0 path n
 
 let rec find path =
     let getProjectFiles =
