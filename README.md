@@ -8,7 +8,7 @@ Usage
 
 `clio <project-directory> <operation> <arguments> <options>`
 
-Operations:
+**list**
 
 `list` - prints a list of the files in the top level directory. Options:
  * `-r` recursive (show full tree).
@@ -18,6 +18,8 @@ Example:
  
     $ clio src/Website list -rp Scripts/
 
+**find**
+
 `find <path>` - finds a file or folder in the project. Options
  * `-r` show full tree of all descendants.
  * `-c` show a flat list of the immediate children only.
@@ -25,6 +27,8 @@ Example:
 Example:
 
     $ clio src/Website/ find Areas/Admin -r
+
+**add**
 
 `add <action> <file>` - adds a file to the project.
 
