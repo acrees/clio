@@ -7,6 +7,13 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Clio", "src\Clio\Clio.fspro
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Clio.Test", "src\Clio.Test\Clio.Test.fsproj", "{7FF727D4-68FA-4A2E-B44B-A0030858B1BB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{D56EC9A6-F223-4C78-91B6-C18592B7C9C5}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
