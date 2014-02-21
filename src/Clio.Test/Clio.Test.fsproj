@@ -52,6 +52,7 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="TestHelpers.fs" />
     <Compile Include="Utils.fs" />
     <None Include="packages.config" />
     <None Include="app.config" />
