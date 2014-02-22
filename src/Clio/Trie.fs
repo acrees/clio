@@ -68,9 +68,9 @@ let rec iter f t =
   traverse [] t
             
 let rec fold f acc t =
-  let rec traverse revp acc t = 
+  let rec traverse acc key t = 
+    let mf = Map.fold (fun a k v -> traverse a (k::key) v) acc
     match t with
-    | Node (None, m) -> Map.fold (fun x -> traverse (x::revp)) acc m
-    | Node (Some v, m) ->
-      f (List.rev revp) v (Map.fold (fun x -> traverse (x::revp)) acc m)
-  traverse [] t acc
+    | Node (None, m) -> mf m
+    | Node (Some v, m) -> f (mf m) (List.rev key) v
+  traverse acc [] t

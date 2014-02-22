@@ -56,6 +56,7 @@
     <Compile Include="Utils.fs" />
     <None Include="packages.config" />
     <None Include="app.config" />
+    <Compile Include="Trie.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
