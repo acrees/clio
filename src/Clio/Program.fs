@@ -21,22 +21,23 @@ let main argv =
         | [] | _::[] -> fail ()
         | d::_ when not <| Directory.Exists d -> raise <| DirectoryNotFoundException()
         | d::o::args ->
+            let cwd = (new DirectoryInfo(d)).FullName
             match o with
             | "list" ->
                 if hasOption 'p' && args.Length = 0
                 then raise <| MissingArgument()
                 else let isRecursive = hasOption 'r'
                      let path = if hasOption 'p' then args.[0] else d
-                     Core.show d path isRecursive
+                     Core.show cwd path isRecursive
             | "find" ->
                 let children = hasOption 'c'
                 let isRecursive = hasOption 'r'
                 match args with
-                | file::[] -> Core.find d file children isRecursive
+                | file::[] -> Core.find cwd file children isRecursive
                 | _ -> fail ()
             | "add" ->
                 match args with 
-                | action::file::[] -> Core.add d action file
+                | action::file::[] -> Core.add cwd action file
                 | _ -> fail ()
             | _ -> fail ()
     with

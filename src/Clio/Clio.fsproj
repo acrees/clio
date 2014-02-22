@@ -23,6 +23,8 @@
     <WarningLevel>3</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>true</Prefer32Bit>
+    <StartWorkingDirectory>C:\Users\Alexander\dev\clio\src\Clio\</StartWorkingDirectory>
+    <StartArguments>. find Program.fs</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

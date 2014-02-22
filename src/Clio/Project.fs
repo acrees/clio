@@ -34,6 +34,9 @@ type Project (path:string, root:XElement) =
             else printfn "%s- %s" pad key
         | Trie.Node(Some v, _) -> printfn "%s- %s (%s)" pad key v.Action
 
+    member val Path = path with get
+    member val Dir = (new FileInfo(path)).DirectoryName
+
     member x.Find k = Trie.findn (split k) trie
     member x.FindOrDefault k d = match x.Find k with | None -> d | Some n -> n
     member x.Contains k = Trie.containsn (split k) trie

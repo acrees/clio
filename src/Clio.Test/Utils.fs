@@ -34,3 +34,23 @@ let ``None ifNone f calls f then returns None`` () =
     let value = ref None
     ifNone None (fun x -> value := Some ()) |> isNone
     value.Value.Value |> is ()
+
+[<Fact>]
+let ``GetRelativePath throws when given an empty path`` () =
+    (fun () -> ignore <| getRelativePath "C:/path/" "C:/path/c/" "") |> throwsArgumentException
+
+[<Fact>]
+let ``GetRelativePath throws when given an empty cwd`` () =
+    (fun () -> ignore <| getRelativePath "C:/path/" "" "/x.fs") |> throwsArgumentException
+
+[<Fact>]
+let ``GetRelativePath returns path if same directory`` () =
+    getRelativePath "C:/src/" "C:/src/" "file.fs" |> is "file.fs"
+
+[<Fact>]
+let ``GetRelativePath returns cwd for .`` () =
+    getRelativePath "C:/src/" "C:/src/x/y/" "." |> is "x/y/"
+
+[<Fact>]
+let ``GetRelativePath returns correct path for unmatched paths`` () =
+    getRelativePath "C:/src/" "C:/src/x/y/" "z/file.fs" |> is "x/y/z/file.fs"
