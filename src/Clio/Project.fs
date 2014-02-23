@@ -6,7 +6,8 @@ open System.IO
 open System.Xml
 open System.Xml.Linq
 
-open Clio.ProjectItems
+open Clio.PersistentProjectItem
+open Clio.ProjectItem
 
 let split (s:string) = s.Split [|'/'|] |> List.ofArray
 

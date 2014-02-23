@@ -6,7 +6,7 @@ open System.IO
 open System.Xml
 open System.Xml.Linq
 
-open Clio.ProjectItems
+open Clio.ProjectItem
 
 let show cwd path full = Project.find cwd >>= Project.load >>| (fun prj ->
     let path' = getRelativePath prj.Dir cwd path

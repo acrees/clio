@@ -51,6 +51,7 @@
     <None Include="App.config" />
     <Compile Include="Utils.fs" />
     <Compile Include="Trie.fs" />
+    <Compile Include="PersistentProjectItem.fs" />
     <Compile Include="ProjectItems.fs" />
     <Compile Include="Project.fs" />
     <Compile Include="Core.fs" />

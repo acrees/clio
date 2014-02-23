@@ -57,6 +57,7 @@
     <Compile Include="TestHelpers.fs" />
     <Compile Include="Utils.fs" />
     <Compile Include="Trie.fs" />
+    <Compile Include="ProjectItem.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -66,6 +67,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="xunit.abstractions">
       <HintPath>..\..\packages\xunit.abstractions.2.0.0-alpha-build2576\lib\net35\xunit.abstractions.dll</HintPath>
       <Private>True</Private>
