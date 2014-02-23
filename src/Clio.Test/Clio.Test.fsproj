@@ -52,10 +52,10 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
     <Compile Include="TestHelpers.fs" />
     <Compile Include="Utils.fs" />
-    <None Include="packages.config" />
-    <None Include="app.config" />
     <Compile Include="Trie.fs" />
   </ItemGroup>
   <ItemGroup>
