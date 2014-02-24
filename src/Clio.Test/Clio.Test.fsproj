@@ -58,6 +58,7 @@
     <Compile Include="Utils.fs" />
     <Compile Include="Trie.fs" />
     <Compile Include="ProjectItem.fs" />
+    <Compile Include="PersistentProjectItem.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

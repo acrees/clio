@@ -15,11 +15,13 @@ type PersistentProjectItem (e:XElement) =
 
     member x.Include
         with get () = 
-            e.Attributes()
-            |> Seq.tryFind (fun y -> y.Name.LocalName = "Include")
-            >>= (fun y -> Some y.Value)
-            >>? String.Empty
+            let attrs =
+                XName.Get("Include", e.Name.NamespaceName) |> e.Attributes
+            if Seq.isEmpty attrs then ""
+            else attrs |> Seq.head |> (fun x -> x.Value)
         and set (v:string) =
+            if String.IsNullOrWhiteSpace v then
+                raise <| new ArgumentException()
             (XName.Get("Include", e.Name.NamespaceName), v)
             |> e.SetAttributeValue
 
@@ -27,12 +29,14 @@ type PersistentProjectItem (e:XElement) =
         with get (name) = data.TryFind name
         and set (name) value =
             match value with
-            | None -> ()
-            | Some v -> data <- data.Add (name, v)
-
-    member x.RemoveData (name) =
-        data <- data.Remove name
-
-        e.Elements()
-        |> Seq.find (fun y -> y.Name.LocalName = name)
-        |> (fun y -> y.Remove())
+            | Some v ->
+                data <- data.Add (name, v)
+                let xn = XName.Get(name, e.Name.NamespaceName)
+                let attrs = xn |> e.Elements
+                if Seq.isEmpty attrs then new XElement(xn, v) |> e.AddFirst
+                else attrs |> Seq.head |> (fun x -> x.Value <- v)
+            | None ->
+                data <- data.Remove name
+                XName.Get(name, e.Name.NamespaceName)
+                |> e.Elements
+                |> (fun y -> y.Remove())

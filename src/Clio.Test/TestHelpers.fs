@@ -5,7 +5,7 @@ open Xunit
 open System
 
 let should op x y = op x y |> Assert.True
-let shouldnt op x y = op x y |> Assert.False
+let shouldn't op x y = op x y |> Assert.False
 
 let be = (=)
 let satisfy op v = op v = true
